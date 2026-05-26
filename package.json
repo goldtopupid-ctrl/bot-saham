@@ -1,0 +1,13 @@
+{
+  "name": "market-telegram-bot",
+  "version": "8.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test:telegram": "node index.js test"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "rss-parser": "^3.13.0"
+  }
+}
