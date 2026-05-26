@@ -691,31 +691,24 @@ app.get("/", (req, res) => {
 });
 
 app.post("/webhook", async (req, res) => {
-
   try {
+    console.log("🔥 WEBHOOK KENA");
+    console.log("UPDATE MASUK:", JSON.stringify(req.body, null, 2));
 
     const message = req.body.message;
-
     const text = message?.text || "";
 
-    console.log("Pesan masuk:", text);
+    console.log("TEXT:", text);
 
     if (text.trim().toLowerCase() === "#info") {
-
       await sendMarketUpdate();
-
     }
 
     res.sendStatus(200);
-
   } catch (err) {
-
     console.log("webhook error:", err.message);
-
     res.sendStatus(200);
-
   }
-
 });
 
 app.get("/test", async (req, res) => {
