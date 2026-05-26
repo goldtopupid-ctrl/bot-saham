@@ -1,0 +1,15 @@
+services:
+  - type: cron
+    name: market-telegram-bot-hourly
+    runtime: node
+    plan: starter
+    schedule: "0 1-10 * * 1-5"
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: TIMEZONE
+        value: Asia/Jakarta
