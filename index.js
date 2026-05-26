@@ -3,6 +3,8 @@ import Parser from "rss-parser";
 
 const app = express();
 
+app.use(express.json());
+
 const parser = new Parser({
   timeout: 15000,
   headers: {
@@ -686,6 +688,34 @@ Summary:
 
 app.get("/", (req, res) => {
   res.send("Market Telegram Bot V8 aktif");
+});
+
+app.post("/webhook", async (req, res) => {
+
+  try {
+
+    const message = req.body.message;
+
+    const text = message?.text || "";
+
+    console.log("Pesan masuk:", text);
+
+    if (text.trim().toLowerCase() === "#info") {
+
+      await sendMarketUpdate();
+
+    }
+
+    res.sendStatus(200);
+
+  } catch (err) {
+
+    console.log("webhook error:", err.message);
+
+    res.sendStatus(200);
+
+  }
+
 });
 
 app.get("/test", async (req, res) => {
